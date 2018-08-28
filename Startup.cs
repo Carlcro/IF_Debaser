@@ -42,7 +42,7 @@ namespace IF_Debaser
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Debaser}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

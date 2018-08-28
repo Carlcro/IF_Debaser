@@ -1,0 +1,41 @@
+@model IEnumerable<IF_Debaser.Models.DebaserModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Spelningar</h2>
+
+<form asp-controller="Debaser" asp-action="Index">
+    <p>
+        Från: <input type="text" name="fromDate" required=true placeholder="20180101" >
+        Till: <input type="text" name="toDate" required=true placeholder="20190101">
+        Klubb: <input type="text" name="toDate" readonly = true value = "Strand">
+
+        <input type="submit" value="Sök" />
+    </p>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            Artist
+        </th>
+        <th>
+            Speldag
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.eventType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eventDate)
+            </td>
+        </tr>
+    }
+
+</table>

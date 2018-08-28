@@ -11,17 +11,26 @@ namespace IF_Debaser.Controllers
     public class DebaserController : Controller
     {
         static HttpClient client = new HttpClient();
-        static string path = "http://debaser.se/debaser/api/?method=getevents&venue=medis&from=20100101&to=20100201&format=json";
+        static string basePath = "http://www.debaser.se/debaser/api/?version=2&";
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string venueName, string fromDate, string toDate)
         {
-            IEnumerable<DebaserModel> debaserEvents = null;
+            if (fromDate == null && toDate == null)
+            {
+                fromDate = DateTime.Today.ToString("yyMMdd");
+                toDate = DateTime.Today.AddYears(1).ToString("yyMMdd");
+            }
 
-            HttpResponseMessage response = await client.GetAsync(path);
+            IEnumerable<DebaserModel> debaserEvents = null;
+            string queryString = basePath + "method=getevents&venue=" + venueName + "&from=" + fromDate + "&to=" + toDate + "&format=json";
+
+            HttpResponseMessage response = await client.GetAsync(queryString);
             if (response.IsSuccessStatusCode)
             {
                 debaserEvents = await response.Content.ReadAsAsync<IEnumerable<DebaserModel>>();
             }
+
+            debaserEvents.OrderBy(x => x.eventDate);
 
             return View(debaserEvents);
         }

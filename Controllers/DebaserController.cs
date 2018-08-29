@@ -22,7 +22,7 @@ namespace IF_Debaser.Controllers
             }
             fromDate = removeDash(fromDate);
             toDate = removeDash(toDate);
-            string queryString = CreateQuesryString(venueName, fromDate, toDate);
+            string queryString = CreateQueryString(venueName, fromDate, toDate);
 
 
             HttpResponseMessage response = await client.GetAsync(queryString);
@@ -44,7 +44,7 @@ namespace IF_Debaser.Controllers
             return date;
         }
 
-        private static string CreateQuesryString(string venueName, string fromDate, string toDate)
+        private static string CreateQueryString(string venueName, string fromDate, string toDate)
         {
             return basePath + "method=getevents&venue=" + venueName + "&from=" + fromDate + "&to=" + toDate + "&format=json";
         }

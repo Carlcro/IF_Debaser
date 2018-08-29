@@ -1,0 +1,15 @@
+bin/Debug/netcoreapp2.0/IF_Debaser.dll
+obj/Debug/netcoreapp2.0/IF_Debaser.pdb
+obj/Debug/netcoreapp2.0/IF_Debaser.dll
+obj/Debug/netcoreapp2.0/IF_Debaser.AssemblyInfo.cs
+obj/Debug/netcoreapp2.0/IF_Debaser.AssemblyInfoInputs.cache
+obj/Debug/netcoreapp2.0/IF_Debaser.csproj.CoreCompileInputs.cache
+obj/Debug/netcoreapp2.0/IF_Debaser.csproj.FileListAbsolute.txt
+obj/Debug/netcoreapp2.0/IF_Debaser.csprojResolveAssemblyReference.cache
+bin/Debug/netcoreapp2.0/IF_Debaser.deps.json
+bin/Debug/netcoreapp2.0/IF_Debaser.pdb
+bin/Debug/netcoreapp2.0/IF_Debaser.runtimeconfig.json
+bin/Debug/netcoreapp2.0/IF_Debaser.runtimeconfig.dev.json
+obj/IF_Debaser.csproj.nuget.cache
+obj/IF_Debaser.csproj.nuget.g.props
+obj/IF_Debaser.csproj.nuget.g.targets

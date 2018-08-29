@@ -9,8 +9,8 @@
 
 <form asp-controller="Debaser" asp-action="Index">
     <p>
-        Från: <input type="text" name="fromDate" required=true placeholder="20180101" >
-        Till: <input type="text" name="toDate" required=true placeholder="20190101">
+        Från: <input type="date" name="fromDate" required=true >
+        Till: <input type="date" name="toDate" required=true>
         Klubb: <input type="text" name="toDate" readonly = true value = "Strand">
 
         <input type="submit" value="Sök" />
@@ -23,6 +23,9 @@
             Artist
         </th>
         <th>
+            Kostnad
+        </th>
+        <th>
             Speldag
         </th>
     </tr>
@@ -32,7 +35,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.eventType)
             </td>
-            <td>
+            <td width="500px">
+                @Html.DisplayFor(modelItem => item.admission)
+            </td>
+            <td width="150px">
                 @Html.DisplayFor(modelItem => item.eventDate)
             </td>
         </tr>

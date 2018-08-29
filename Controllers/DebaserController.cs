@@ -21,6 +21,10 @@ namespace IF_Debaser.Controllers
                 toDate = DateTime.Today.AddYears(1).ToString("yyMMdd");
             }
 
+            fromDate = fromDate.Replace("-", String.Empty);
+            toDate = toDate.Replace("-", String.Empty);
+
+
             IEnumerable<DebaserModel> debaserEvents = null;
             string queryString = basePath + "method=getevents&venue=" + venueName + "&from=" + fromDate + "&to=" + toDate + "&format=json";
 

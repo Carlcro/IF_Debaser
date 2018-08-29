@@ -20,24 +20,33 @@ namespace IF_Debaser.Controllers
                 fromDate = DateTime.Today.ToString("yyMMdd");
                 toDate = DateTime.Today.AddYears(1).ToString("yyMMdd");
             }
+            fromDate = removeDash(fromDate);
+            toDate = removeDash(toDate);
+            string queryString = CreateQuesryString(venueName, fromDate, toDate);
 
-            fromDate = fromDate.Replace("-", String.Empty);
-            toDate = toDate.Replace("-", String.Empty);
-
-
-            IEnumerable<DebaserModel> debaserEvents = null;
-            string queryString = basePath + "method=getevents&venue=" + venueName + "&from=" + fromDate + "&to=" + toDate + "&format=json";
 
             HttpResponseMessage response = await client.GetAsync(queryString);
             if (response.IsSuccessStatusCode)
             {
-                debaserEvents = await response.Content.ReadAsAsync<IEnumerable<DebaserModel>>();
+                IEnumerable<DebaserModel> debaserEvents = await response.Content.ReadAsAsync<IEnumerable<DebaserModel>>();
+                debaserEvents.OrderBy(x => x.eventDate);
+                return View(debaserEvents);
             }
-
-            debaserEvents.OrderBy(x => x.eventDate);
-
-            return View(debaserEvents);
+            else
+            {
+                return StatusCode(503);
+            }
         }
 
+        private static string removeDash(string date)
+        {
+            date = date.Replace("-", String.Empty);
+            return date;
+        }
+
+        private static string CreateQuesryString(string venueName, string fromDate, string toDate)
+        {
+            return basePath + "method=getevents&venue=" + venueName + "&from=" + fromDate + "&to=" + toDate + "&format=json";
+        }
     }
 }
